@@ -1,6 +1,6 @@
 {
   "name": "ddd-framework",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A framework to facilitate building domain-driven applications with value objects, entities, and aggregates.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/ddd-framework.git"
+    "url": "https://github.com/PrimeCodeLabs/ddd-framework.git"
   },
   "keywords": [
     "ddd",
@@ -22,17 +22,17 @@
     "entities",
     "aggregates"
   ],
-  "author": "Your Name",
+  "author": "Hamsa Jama",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.0",
     "jest": "^27.0.6",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.4.3",
-    "typedoc": "^0.22.8"
+    "typedoc": "^0.22.8",
+    "typescript": "^4.4.3"
   },
   "peerDependencies": {
     "decimal.js": "^10.4.3"

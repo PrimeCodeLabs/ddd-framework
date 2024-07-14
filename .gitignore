@@ -65,3 +65,6 @@ $RECYCLE.BIN/
 
 docs
 .npmrc
+
+# Exception for jest config
+!jest.config.js

@@ -16,7 +16,7 @@ A framework to facilitate building domain-driven applications with value objects
 To install the package, use npm:
 
 ```sh
-npm install ddd-framework
+npm install @PrimeCodeLabs/ddd-framework
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ Value Objects are immutable and defined by their values. An example of a value o
 #### Money
 
 ```typescript
-import { Money } from "ddd-framework";
+import { Money } from "@PrimeCodeLabs/ddd-framework";
 
 const price = new Money(100, "USD");
 const discountedPrice = price.subtract(new Money(20, "USD"));
@@ -45,8 +45,8 @@ Entities are objects that are defined by their identity rather than their attrib
 #### Product
 
 ```typescript
-import { Entity } from "ddd-framework";
-import { Money } from "ddd-framework";
+import { Entity } from "@PrimeCodeLabs/ddd-framework";
+import { Money } from "@PrimeCodeLabs/ddd-framework";
 
 interface ProductProps {
   name: string;
@@ -83,8 +83,8 @@ Aggregates are clusters of entities that are treated as a single unit. The root 
 #### Order
 
 ```typescript
-import { AggregateRoot } from "ddd-framework";
-import { Money } from "ddd-framework";
+import { AggregateRoot } from "@PrimeCodeLabs/ddd-framework";
+import { Money } from "@PrimeCodeLabs/ddd-framework";
 import { OrderItem } from "./OrderItem";
 
 interface OrderProps {
@@ -143,7 +143,7 @@ Domain Events are used to model significant events that happen within the domain
 #### OrderPaidEvent
 
 ```typescript
-import { DomainEvent } from "ddd-framework";
+import { DomainEvent } from "@PrimeCodeLabs/ddd-framework";
 
 class OrderPaidEvent extends DomainEvent {
   constructor(public readonly orderId: string) {
@@ -159,7 +159,7 @@ Event Dispatching is used to handle and dispatch domain events.
 #### EventDispatcher
 
 ```typescript
-import { EventDispatcher, EventHandler } from "ddd-framework";
+import { EventDispatcher, EventHandler } from "@PrimeCodeLabs/ddd-framework";
 import { OrderPaidEvent } from "./OrderPaidEvent";
 
 class OrderPaidEventHandler implements EventHandler<OrderPaidEvent> {
@@ -182,7 +182,7 @@ Repositories are used to abstract storage for aggregates.
 #### OrderRepository
 
 ```typescript
-import { Repository } from "ddd-framework";
+import { Repository } from "@PrimeCodeLabs/ddd-framework";
 import { Order } from "./Order";
 
 class OrderRepository extends Repository<Order> {
@@ -221,11 +221,3 @@ To generate documentation, use the following command:
 ```sh
 npm run docs
 ```
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

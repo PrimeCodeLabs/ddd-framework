@@ -7,6 +7,10 @@ interface ProductProps {
 }
 
 export class Product extends Entity<ProductProps> {
+  static create(id: string, props: ProductProps): Product {
+    return new Product(id, props);
+  }
+
   constructor(id: string, props: ProductProps) {
     super(id, props);
   }

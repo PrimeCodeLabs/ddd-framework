@@ -7,6 +7,10 @@ interface MoneyProps {
 }
 
 export class Money extends ValueObject<MoneyProps> {
+  static create(amount: number | string | Decimal, currency: string): Money {
+    return new Money(amount, currency);
+  }
+
   constructor(amount: number | string | Decimal, currency: string) {
     if (amount === null || amount === undefined || isNaN(Number(amount))) {
       throw new Error("Invalid amount");

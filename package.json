@@ -1,6 +1,6 @@
 {
   "name": "@PrimeCodeLabs/ddd-framework",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A framework to facilitate building domain-driven applications with value objects, entities, and aggregates.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

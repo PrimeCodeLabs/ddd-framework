@@ -30,8 +30,8 @@ Value Objects are immutable and defined by their values. An example of a value o
 ```typescript
 import { Money } from "@PrimeCodeLabs/ddd-framework";
 
-const price = new Money(100, "USD");
-const discountedPrice = price.subtract(new Money(20, "USD"));
+const price = Money.create(100, "USD");
+const discountedPrice = price.subtract(Money.create(20, "USD"));
 
 console.log(price.amount.toString()); // '100'
 console.log(discountedPrice.amount.toString()); // '80'
@@ -54,6 +54,10 @@ interface ProductProps {
 }
 
 class Product extends Entity<ProductProps> {
+  static create(id: string, props: ProductProps): Product {
+    return new Product(id, props);
+  }
+
   get name(): string {
     return this.props.name;
   }
@@ -67,11 +71,11 @@ class Product extends Entity<ProductProps> {
   }
 }
 
-const product = new Product("1", {
+const product = Product.create("1", {
   name: "Product A",
-  price: new Money(100, "USD"),
+  price: Money.create(100, "USD"),
 });
-product.changePrice(new Money(150, "USD"));
+product.changePrice(Money.create(150, "USD"));
 
 console.log(product.price.amount.toString()); // '150'
 ```
@@ -94,12 +98,11 @@ interface OrderProps {
 }
 
 class Order extends AggregateRoot<OrderProps> {
-  constructor(id: string, props: OrderProps) {
-    super(id, {
+  static create(id: string, props: OrderProps): Order {
+    return new Order(id, {
       ...props,
-      totalAmount: new Money(0, props.totalAmount.currency),
+      totalAmount: Money.create(0, props.totalAmount.currency),
     });
-    this.recalculateTotalAmount();
   }
 
   get totalAmount(): Money {
@@ -130,7 +133,7 @@ class Order extends AggregateRoot<OrderProps> {
     const total = this.props.items.reduce((sum, item) => {
       const itemTotal = item.price.multiply(item.quantity);
       return sum.add(itemTotal);
-    }, new Money(0, this.props.totalAmount.currency));
+    }, Money.create(0, this.props.totalAmount.currency));
     this.props.totalAmount = total;
   }
 }
@@ -188,11 +191,11 @@ import { Order } from "./Order";
 class OrderRepository extends Repository<Order> {
   private orders = new Map<string, Order>();
 
-  save(order: Order): void {
+  async save(order: Order): Promise<void> {
     this.orders.set(order.id, order);
   }
 
-  findById(id: string): Order | undefined {
+  async findById(id: string): Promise<Order | undefined> {
     return this.orders.get(id);
   }
 }
